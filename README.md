@@ -26,12 +26,18 @@ For install only client-side dependencies
 ## Test requirements
 
 CRUD for superheroes ✔️
+
 List all superheros, seeing only one image for each and it’s nickname, with pagination, showing 5 items at once ✔️
+
 See the details of one particular superhero with all it’s information and images ✔️
+
 Use Node.js ✔️
+
 Write down unit tests, at least for the main logic ✔️
+
 A README with the steps to run the solution, and a list of all the assumptions that
 you made (if any) ✔️
+
 
 ## My solution step
 
