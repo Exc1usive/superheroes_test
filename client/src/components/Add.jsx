@@ -54,7 +54,9 @@ export default function Add() {
       images: [],
     });
 
-    navigate("/superhero");
+    setTimeout(() => {
+      navigate("/superhero");
+    }, 1000);
   }
 
   // This following section will display the form that takes the input from the user.

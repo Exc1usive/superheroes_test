@@ -16,16 +16,18 @@ export default function Superhero() {
   getOne(setForm, params);
 
   function imagesList() {
-    let imagesWithoutMain = [...form.images];
-    imagesWithoutMain.splice(0, 1);
+    if (form.images !== []) {
+      let imagesWithoutMain = [...form.images];
+      imagesWithoutMain.splice(0, 1);
 
-    return imagesWithoutMain.map((image, i) => {
-      return (
-        <div key={i} className='superheroImage'>
-          <img src={`../uploads/${image}`} alt={image} />
-        </div>
-      );
-    });
+      return imagesWithoutMain.map((image, i) => {
+        return (
+          <div key={i} className='superheroImage'>
+            <img src={`../uploads/${image}`} alt={image} />
+          </div>
+        );
+      });
+    }
   }
 
   return (
@@ -39,10 +41,9 @@ export default function Superhero() {
               src={`../uploads/${form.images[0]}`}
               alt={form.nickname}
               onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
-                currentTarget.src = "../../unnamed.png";
+                currentTarget.src = "../unnamed.png";
               }}
-            />{" "}
+            />
           </div>
           <div className='info'>
             <div className='blockOne'>

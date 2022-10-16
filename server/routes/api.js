@@ -2,7 +2,7 @@ require("dotenv").config({ path: "./config.env" });
 const fs = require("fs");
 const Superhero = require("../models/superhero.js");
 const multer = require("../services/multer.js");
-const path = "../client/public/uploads/";
+const path = "client/build/uploads/";
 
 module.exports = function (app) {
   // GET all the superheroes
@@ -38,7 +38,7 @@ module.exports = function (app) {
       newSuperhero
         .save()
         .then(() => res.json("superhero added"))
-        .catch((err) => res.status(400).json(`Error: ${err}`));
+        .catch((err) => res.status(400).json(`Error XYI: ${err}`));
     }
   });
 
