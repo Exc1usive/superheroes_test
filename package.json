@@ -1,0 +1,19 @@
+{
+  "name": "superheroes",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install": "npm run install-server && npm run install-client",
+    "start": "cd client && npm run build && cd .. && nodemon server/server.js",
+    "test": "cd server && npm test"
+  },
+  "author": "Oleksii Baula",
+  "license": "ISC"
+}
