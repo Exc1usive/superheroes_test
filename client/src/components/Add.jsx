@@ -43,7 +43,18 @@ export default function Add() {
       newSuperhero.append("images", form.images[i]);
     }
 
-    post(newSuperhero);
+    function success() {
+      setTimeout(() => {
+        navigate("/superhero");
+      }, 1000);
+    }
+    function failure() {
+      setTimeout(() => {
+        navigate("/error");
+      }, 1000);
+    }
+
+    post(newSuperhero, success, failure);
 
     setForm({
       nickname: "",
@@ -53,10 +64,6 @@ export default function Add() {
       catch_phrase: "",
       images: [],
     });
-
-    setTimeout(() => {
-      navigate("/superhero");
-    }, 1000);
   }
 
   // This following section will display the form that takes the input from the user.

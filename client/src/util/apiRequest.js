@@ -14,19 +14,31 @@ export function getAll(setRecords) {
 }
 
 // POST request to add superhero
-export function post(newSuperhero) {
+export function post(newSuperhero, success, failure) {
   axios
     .post(`${config.SERVER_URL}/api/superheroes`, newSuperhero)
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
+    .then((res) => {
+      success();
+      return console.log(res.data);
+    })
+    .catch((err) => {
+      failure();
+      return console.log(err);
+    });
 }
 
 // PUT request to update superhero
-export function put(newSuperhero, params) {
+export function put(newSuperhero, params, success, failure) {
   axios
     .put(`${config.SERVER_URL}/api/superheroes/${params.id.toString()}`, newSuperhero)
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
+    .then((res) => {
+      success();
+      return console.log(res.data);
+    })
+    .catch((err) => {
+      failure();
+      return console.log(err);
+    });
 }
 
 export function getOne(setForm, params) {

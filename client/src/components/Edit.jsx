@@ -49,18 +49,18 @@ export default function Edit() {
       newSuperhero.append("images", newImages.images[i]);
     }
 
-    put(newSuperhero, params);
+    function success() {
+      setTimeout(() => {
+        navigate("/superhero");
+      }, 1000);
+    }
+    function failure() {
+      setTimeout(() => {
+        navigate("/error");
+      }, 1000);
+    }
 
-    setForm({
-      nickname: "",
-      real_name: "",
-      origin_description: "",
-      superpowers: "",
-      catch_phrase: "",
-      images: [],
-    });
-
-    navigate("/superhero");
+    put(newSuperhero, params, success, failure);
   }
 
   function imagesList() {
@@ -84,100 +84,81 @@ export default function Edit() {
 
   return (
     <div className='editSuperhero home'>
-      <h1>Edit Record</h1>
-
       <div className='editBlock'>
-        <div className='superhero'>
-          <div>
-            <div className='editedNick'>
-              <h1 className='shNickname'>{form.nickname}</h1>
-            </div>
-            <div className='blockOne'>
-              <div>
-                <p>Real name</p>
-                <h4>{form.real_name}</h4>
+        <form
+          onSubmit={onSubmit}
+          encType='multipart/form-data'
+          className='editForm'
+          autoComplete='off'
+        >
+          <div className='superhero'>
+            <div>
+              <div className='editedNick form-group'>
+                <input
+                  type='text'
+                  className='shNickname'
+                  id='nickname'
+                  value={form.nickname}
+                  onChange={(e) => updateForm({ nickname: e.target.value })}
+                />
+              </div>
+              <div className='blockOne'>
+                <div className='form-group'>
+                  <label htmlFor='real_name'>Real name</label>
+                  <br />
+                  <input
+                    type='text'
+                    className='form-control p'
+                    id='real_name'
+                    value={form.real_name}
+                    onChange={(e) => updateForm({ real_name: e.target.value })}
+                  />
+                </div>
+
+                <div className='form-group'>
+                  <label htmlFor='catch_phrase'>Catch phrase</label>
+                  <br />
+                  <input
+                    type='text'
+                    className='form-control p'
+                    id='catch_phrase'
+                    value={form.catch_phrase}
+                    onChange={(e) => updateForm({ catch_phrase: e.target.value })}
+                  />
+                </div>
               </div>
 
-              <div>
-                <p>Catch phrase</p>
-                <h4>{form.catch_phrase}</h4>
+              <hr />
+
+              <div className='form-group'>
+                <label htmlFor='superpowers'>Superpowers</label>
+                <input
+                  type='text'
+                  className='form-control h4'
+                  id='superpowers'
+                  value={form.superpowers}
+                  onChange={(e) => updateForm({ superpowers: e.target.value })}
+                />
+              </div>
+
+              <hr />
+
+              <div className='form-group'>
+                <label htmlFor='origin_description'>Origin description</label>
+                <textarea
+                  type='text'
+                  className='form-control h4'
+                  id='origin_description'
+                  value={form.origin_description}
+                  onChange={(e) => updateForm({ origin_description: e.target.value })}
+                />
               </div>
             </div>
-
-            <hr />
-
-            <div>
-              <p>Superpowers</p>
-              <h4>{form.superpowers}</h4>
-            </div>
-
-            <hr />
-
-            <div>
-              <p>Origin</p>
-              <h4>{form.origin_description}</h4>
-            </div>
-          </div>
-        </div>
-
-        <form onSubmit={onSubmit} encType='multipart/form-data' className='addForm'>
-          <div className='form-group'>
-            <label htmlFor='nickname'>Nickname</label>
-            <input
-              type='text'
-              className='form-control'
-              id='nickname'
-              value={form.nickname}
-              onChange={(e) => updateForm({ nickname: e.target.value })}
-            />
           </div>
 
-          <div className='form-group'>
-            <label htmlFor='real_name'>Real name</label>
-            <input
-              type='text'
-              className='form-control'
-              id='real_name'
-              value={form.real_name}
-              onChange={(e) => updateForm({ real_name: e.target.value })}
-            />
-          </div>
+          <hr />
 
           <div className='form-group'>
-            <label htmlFor='origin_description'>Origin description</label>
-            <input
-              type='text'
-              className='form-control'
-              id='origin_description'
-              value={form.origin_description}
-              onChange={(e) => updateForm({ origin_description: e.target.value })}
-            />
-          </div>
-
-          <div className='form-group'>
-            <label htmlFor='superpowers'>Superpowers</label>
-            <input
-              type='text'
-              className='form-control'
-              id='superpowers'
-              value={form.superpowers}
-              onChange={(e) => updateForm({ superpowers: e.target.value })}
-            />
-          </div>
-
-          <div className='form-group'>
-            <label htmlFor='catch_phrase'>Catch phrase</label>
-            <input
-              type='text'
-              className='form-control'
-              id='catch_phrase'
-              value={form.catch_phrase}
-              onChange={(e) => updateForm({ catch_phrase: e.target.value })}
-            />
-          </div>
-
-          <div className='form-group'>
-            <label htmlFor='images'>Add images</label>
             <input
               type='file'
               name='images'
@@ -188,6 +169,7 @@ export default function Edit() {
             />
           </div>
 
+          <hr />
           <div className='form-group'>
             <input type='submit' value='Update superhero' className='btn btn-primary' />
           </div>
